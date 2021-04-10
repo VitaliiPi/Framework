@@ -1,11 +1,11 @@
 //
 //  MapViewController.swift
-//  MAPD724_Assignment4
+//  MAPD724_Assignment5
 //
-//  Created by vitalii and dmytro on 2021-03-27.
+//  Created by vitalii and dmytro on 2021-04-10.
 //  Copyright © 2021 Dmytro&Vitalii. All rights reserved.
 //
-//  Assignment 4 - Frameworks App - Part 1 - Create the App UI
+//  Assignment 5 - Frameworks App - Part 2 - App Config and Data Persistence
 //
 //  Group 9
 //
@@ -26,16 +26,37 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
-
-  
   @IBOutlet weak var mapView: MKMapView!
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    mapView.userTrackingMode = .follow
-  }
+    override func viewDidLoad() {
+      super.viewDidLoad()
+      mapView.userTrackingMode = .follow
+      let annotations = LocationsStorage.shared.locations.map { annotationForLocation($0) }
+      mapView.addAnnotations(annotations)
+      NotificationCenter.default.addObserver(self, selector: #selector(newLocationAdded(_:)), name: .locationSavedNew, object: nil)
+    }
   
   @IBAction func placeLocation(_ sender: Any) {
+      guard let currentLocation = mapView.userLocation.location else {
+        return
+    }
+      LocationsStorage.shared.saveCLLocationToDisk(currentLocation)
   }
-
+  
+  func annotationForLocation(_ location: Location) -> MKAnnotation {
+      let annotation = MKPointAnnotation()
+      annotation.title = location.dateString
+      annotation.coordinate = location.coordinates
+      return annotation
+  }
+  
+  @objc func newLocationAdded(_ notification: Notification) {
+      guard let location = notification.userInfo?["location"] as? Location else {
+        return
+    }
+    
+      let annotation = annotationForLocation(location)
+      mapView.addAnnotation(annotation)
+  }
 }
+

@@ -1,11 +1,11 @@
 //
 //  ViewController.swift
-//  MAPD724_Assignment4
+//  MAPD724_Assignment5
 //
-//  Created by vitalii and dmytro on 2021-03-27.
+//  Created by vitalii and dmytro on 2021-04-10.
 //  Copyright © 2021 Dmytro&Vitalii. All rights reserved.
 //
-//  Assignment 4 - Frameworks App - Part 1 - Create the App UI
+//  Assignment 5 - Frameworks App - Part 2 - App Config and Data Persistence
 //
 //  Group 9
 //

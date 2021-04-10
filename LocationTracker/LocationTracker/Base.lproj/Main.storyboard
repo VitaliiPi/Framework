@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UGr-8A-F3N">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,7 +13,7 @@
         <scene sceneID="DmM-4R-JzD">
             <objects>
                 <navigationController title="Map" id="0bQ-4o-VWg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" image="mappin.circle.fill" catalog="system" id="9VF-o9-fGQ"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="mapIcon" id="9VF-o9-fGQ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="l12-Lq-7ru">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -34,7 +35,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LFu-Id-dEQ">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFu-Id-dEQ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
                         </subviews>
@@ -48,6 +49,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Vr-Zo-Emd">
+                        <barButtonItem key="leftBarButtonItem" title="Instruction" style="plain" id="gsr-iw-o2Z">
+                            <connections>
+                                <segue destination="PMf-Qg-TNh" kind="show" id="ew7-Po-IPo"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZvE-gp-dEm">
                             <connections>
                                 <action selector="placeLocation:" destination="qA9-Q3-2Wc" id="773-rf-5WY"/>
@@ -62,16 +68,74 @@
             </objects>
             <point key="canvasLocation" x="1695.6521739130435" y="604.6875"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="pxR-L5-bog">
+            <objects>
+                <viewController id="PMf-Qg-TNh" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IgF-tk-8tL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="INSTRUCTION" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCA-Ps-Ig3">
+                                <rect key="frame" x="20" y="98" width="374" height="63"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="8rV-YT-3aX"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="App is capable of:" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7a-MF-TLr">
+                                <rect key="frame" x="20" y="169" width="374" height="72"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="Hkk-0c-bcJ"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70P-Jo-Rdd">
+                                <rect key="frame" x="20" y="240" width="374" height="563"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <mutableString key="text">- Track your current location (even in the background).                                                               - Newly tracked location will trigger notification, which will be displayed to the user.                                                                                                     - Tracked locations are being displayed in a tableView.                                                                  - Show map with your current location and those locations that were tracked before.                                      - Every user can save their location by adding(dropping) markers to their current location on the map.                                                                    - Location is being saved within iOS in a JSON format via  JSONEncoder. </mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XjV-Jg-o2D"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bCA-Ps-Ig3" firstAttribute="leading" secondItem="y7a-MF-TLr" secondAttribute="leading" id="6m3-7f-dAW"/>
+                            <constraint firstItem="70P-Jo-Rdd" firstAttribute="leading" secondItem="XjV-Jg-o2D" secondAttribute="leading" constant="20" id="Ba4-JB-mIj"/>
+                            <constraint firstItem="bCA-Ps-Ig3" firstAttribute="top" secondItem="XjV-Jg-o2D" secondAttribute="top" constant="10" id="Flp-30-BZA"/>
+                            <constraint firstItem="70P-Jo-Rdd" firstAttribute="top" secondItem="bCA-Ps-Ig3" secondAttribute="bottom" constant="79" id="GOA-h2-PJF"/>
+                            <constraint firstItem="y7a-MF-TLr" firstAttribute="top" secondItem="bCA-Ps-Ig3" secondAttribute="bottom" constant="8" id="U7V-ll-oYE"/>
+                            <constraint firstItem="XjV-Jg-o2D" firstAttribute="trailing" secondItem="70P-Jo-Rdd" secondAttribute="trailing" constant="20" id="g1A-i3-CFc"/>
+                            <constraint firstItem="XjV-Jg-o2D" firstAttribute="bottom" secondItem="70P-Jo-Rdd" secondAttribute="bottom" constant="10" id="g6S-P2-nVn"/>
+                            <constraint firstItem="bCA-Ps-Ig3" firstAttribute="trailing" secondItem="IgF-tk-8tL" secondAttribute="trailingMargin" id="vnb-bE-w37"/>
+                            <constraint firstItem="bCA-Ps-Ig3" firstAttribute="trailing" secondItem="y7a-MF-TLr" secondAttribute="trailing" id="xZB-pC-8TZ"/>
+                            <constraint firstItem="bCA-Ps-Ig3" firstAttribute="leading" secondItem="IgF-tk-8tL" secondAttribute="leadingMargin" id="xsm-wf-qQw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZlY-gT-mB4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ctO-BY-2ta" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2518.840579710145" y="604.6875"/>
+        </scene>
         <!--Routes-->
         <scene sceneID="RZ3-vo-Ayn">
             <objects>
-                <tableViewController id="sXd-i5-oSr" sceneMemberID="viewController">
+                <tableViewController id="sXd-i5-oSr" customClass="RoutesTableViewController" customModule="LocationTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WGZ-QQ-Dfj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteCell" textLabel="cDE-Mj-AUT" detailTextLabel="FTY-bd-ywM" style="IBUITableViewCellStyleSubtitle" id="fKb-Un-7Ua">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaceCell" textLabel="cDE-Mj-AUT" detailTextLabel="FTY-bd-ywM" style="IBUITableViewCellStyleSubtitle" id="fKb-Un-7Ua">
                                 <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fKb-Un-7Ua" id="2l9-Tf-IVi">
@@ -111,7 +175,7 @@
         <scene sceneID="wED-qx-gym">
             <objects>
                 <navigationController title="List" id="YGU-M3-OO4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="list.bullet.rectangle" catalog="system" id="Bcz-fd-xQ2"/>
+                    <tabBarItem key="tabBarItem" title="List" image="listIcon" id="Bcz-fd-xQ2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vXP-4K-JZK">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -145,8 +209,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="list.bullet.rectangle" catalog="system" width="128" height="93"/>
-        <image name="mappin.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="listIcon" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="mapIcon" width="33.333332061767578" height="33.333332061767578"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
